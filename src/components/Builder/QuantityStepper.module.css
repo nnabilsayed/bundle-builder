@@ -1,0 +1,57 @@
+.stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  height: 32px;
+}
+
+.btn {
+  width: 32px;
+  height: 100%;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.1s;
+  flex-shrink: 0;
+}
+
+.btn:hover:not(:disabled) {
+  background-color: var(--color-bg);
+}
+
+.btn:disabled {
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+.count {
+  min-width: 28px;
+  text-align: center;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  padding: 0 4px;
+}
+
+.compact {
+  height: 26px;
+}
+
+.compact .btn {
+  width: 26px;
+  font-size: 14px;
+}
+
+.compact .count {
+  min-width: 22px;
+  font-size: var(--font-size-xs);
+}

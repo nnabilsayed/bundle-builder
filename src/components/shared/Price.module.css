@@ -1,0 +1,30 @@
+.price {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.compareAt {
+  text-decoration: line-through;
+  color: var(--color-text-muted);
+}
+
+.active {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.free {
+  color: var(--color-free);
+  font-weight: 700;
+}
+
+.sm .compareAt { font-size: var(--font-size-xs); }
+.sm .active    { font-size: var(--font-size-sm); }
+
+.md .compareAt { font-size: var(--font-size-sm); }
+.md .active    { font-size: var(--font-size-base); }
+
+.lg .compareAt { font-size: var(--font-size-base); }
+.lg .active    { font-size: var(--font-size-xl); font-weight: 700; }

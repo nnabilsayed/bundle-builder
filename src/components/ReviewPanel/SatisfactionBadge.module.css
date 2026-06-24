@@ -1,0 +1,61 @@
+.wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  margin: 8px 0;
+}
+
+.badge {
+  flex-shrink: 0;
+}
+
+.seal {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: conic-gradient(#6C2BD9, #4f1fa3, #6C2BD9);
+  border: 3px solid #6C2BD9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 4px;
+}
+
+.pct {
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.sub {
+  font-size: 8px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.sub2 {
+  font-size: 7px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.text strong {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.text p {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: 1.4;
+}

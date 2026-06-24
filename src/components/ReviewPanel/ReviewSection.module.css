@@ -1,0 +1,19 @@
+.section {
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  margin: 0 0 2px;
+  padding-top: 10px;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+}

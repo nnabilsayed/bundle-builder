@@ -1,0 +1,48 @@
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.financing {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background-color: #111;
+  color: #fff;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  align-self: flex-start;
+}
+
+.financing strong {
+  font-weight: 700;
+}
+
+.totals {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.compareAt {
+  font-size: var(--font-size-base);
+  text-decoration: line-through;
+  color: var(--color-text-muted);
+}
+
+.price {
+  font-size: var(--font-size-2xl);
+  font-weight: 800;
+  color: var(--color-text-primary);
+}
+
+.savings {
+  font-size: var(--font-size-xs);
+  color: var(--color-primary);
+  font-weight: 600;
+  margin: 0;
+}
