@@ -1,20 +1,17 @@
 .stepper {
   display: inline-flex;
   align-items: center;
-  gap: 0;
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  height: 32px;
+  gap: 10px;
 }
 
 .btn {
-  width: 32px;
-  height: 100%;
-  border: none;
-  background: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #E6EBF0;
+  background: #FFFFFF;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--color-text-primary);
   display: flex;
@@ -22,36 +19,36 @@
   justify-content: center;
   transition: background-color 0.1s;
   flex-shrink: 0;
+  padding: 0;
 }
 
 .btn:hover:not(:disabled) {
-  background-color: var(--color-bg);
+  background-color: #f0f0f0;
 }
 
 .btn:disabled {
-  color: var(--color-text-muted);
+  color: #C8D0D8;
+  border-color: #E6EBF0;
+  background: #F8FAFB;
   cursor: not-allowed;
 }
 
 .count {
-  min-width: 28px;
-  text-align: center;
-  font-size: var(--font-size-sm);
+  font-family: 'Gilroy', sans-serif;
   font-weight: 600;
-  color: var(--color-text-primary);
-  padding: 0 4px;
-}
-
-.compact {
-  height: 26px;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0;
+  color: #0B0D10;
+  text-align: center;
+  min-width: 12px;
 }
 
 .compact .btn {
-  width: 26px;
-  font-size: 14px;
+  width: 20px;
+  height: 20px;
 }
 
 .compact .count {
-  min-width: 22px;
-  font-size: var(--font-size-xs);
+  font-size: 14px;
 }

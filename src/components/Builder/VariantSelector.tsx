@@ -19,13 +19,7 @@ export function VariantSelector({ variants, selectedVariantId, onSelect }: Varia
           aria-label={v.color}
           aria-pressed={v.id === selectedVariantId}
         >
-          <span
-            className={styles.swatch}
-            style={{
-              backgroundColor: v.colorHex,
-              border: v.colorHex === '#FFFFFF' ? '1px solid #ccc' : undefined,
-            }}
-          />
+          {v.image && <img src={v.image} alt={v.color} className={styles.swatch} />}
           <span className={styles.label}>{v.color}</span>
         </button>
       ))}

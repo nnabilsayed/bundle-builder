@@ -25,20 +25,17 @@ export function ReviewLineItem({ line }: { line: ReviewLineData }) {
         )}
       </div>
       <div className={styles.info}>
-        <span className={styles.name}>
-          {line.name}
-          {line.variantLabel && (
-            <span className={styles.variant}> ({line.variantLabel})</span>
-          )}
-        </span>
+        <span className={styles.name}>{line.name}</span>
       </div>
-      <div className={styles.controls}>
-        <QuantityStepper
-          value={line.quantity}
-          onIncrement={handleIncrement}
-          onDecrement={handleDecrement}
-          compact
-        />
+      <QuantityStepper
+        value={line.quantity}
+        onIncrement={handleIncrement}
+        onDecrement={handleDecrement}
+        minValue={line.required ? 1 : 0}
+        maxValue={line.required ? 1 : undefined}
+        compact
+      />
+      <div className={styles.priceCol}>
         <Price
           price={line.price * line.quantity}
           compareAtPrice={line.compareAtPrice ? line.compareAtPrice * line.quantity : undefined}

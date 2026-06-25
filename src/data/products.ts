@@ -13,9 +13,9 @@ export const products: Product[] = [
     compareAtPrice: 35.98,
     discountLabel: 'Save 22%',
     variants: [
-      { id: 'wyze-cam-v4-white', color: 'White', colorHex: '#FFFFFF', image: '' },
-      { id: 'wyze-cam-v4-gray', color: 'Gray', colorHex: '#888888', image: '' },
-      { id: 'wyze-cam-v4-black', color: 'Black', colorHex: '#222222', image: '' },
+      { id: 'wyze-cam-v4-white', color: 'White', colorHex: '#FFFFFF', image: '/images/Wyze Cam v4.png' },
+      { id: 'wyze-cam-v4-gray', color: 'Gray', colorHex: '#888888', image: '/images/grey wyze cam v4.png' },
+      { id: 'wyze-cam-v4-black', color: 'Black', colorHex: '#222222', image: '/images/black wyze cam v4.png' },
     ],
   },
   {
@@ -29,8 +29,8 @@ export const products: Product[] = [
     compareAtPrice: 39.98,
     discountLabel: 'Save 13%',
     variants: [
-      { id: 'wyze-cam-pan-v3-white', color: 'White', colorHex: '#FFFFFF', image: '' },
-      { id: 'wyze-cam-pan-v3-black', color: 'Black', colorHex: '#222222', image: '' },
+      { id: 'wyze-cam-pan-v3-white', color: 'White', colorHex: '#FFFFFF', image: '/images/Wyze Cam Pan v3.png' },
+      { id: 'wyze-cam-pan-v3-black', color: 'Black', colorHex: '#222222', image: '/images/black wyze cam pan v3.png' },
     ],
   },
   {
@@ -44,8 +44,8 @@ export const products: Product[] = [
     compareAtPrice: 89.98,
     discountLabel: 'Save 22%',
     variants: [
-      { id: 'wyze-cam-floodlight-v2-white', color: 'White', colorHex: '#FFFFFF', image: '' },
-      { id: 'wyze-cam-floodlight-v2-black', color: 'Black', colorHex: '#222222', image: '' },
+      { id: 'wyze-cam-floodlight-v2-white', color: 'White', colorHex: '#FFFFFF', image: '/images/Wyze Cam Floodlight v2.png' },
+      { id: 'wyze-cam-floodlight-v2-black', color: 'Black', colorHex: '#222222', image: '/images/black Wyze Cam Floodlight v2.png' },
     ],
   },
   {
@@ -56,7 +56,7 @@ export const products: Product[] = [
     stepId: 'cameras',
     reviewCategory: 'cameras',
     price: 69.98,
-    image: '',
+    image: '/images/Wyze Duo Cam Doorbell.png',
   },
   {
     id: 'wyze-battery-cam-pro',
@@ -67,8 +67,8 @@ export const products: Product[] = [
     reviewCategory: 'cameras',
     price: 89.98,
     variants: [
-      { id: 'wyze-battery-cam-pro-white', color: 'White', colorHex: '#FFFFFF', image: '' },
-      { id: 'wyze-battery-cam-pro-black', color: 'Black', colorHex: '#222222', image: '' },
+      { id: 'wyze-battery-cam-pro-white', color: 'White', colorHex: '#FFFFFF', image: '/images/Wyze Battery Cam Pro.png' },
+      { id: 'wyze-battery-cam-pro-black', color: 'Black', colorHex: '#222222', image: '/images/black Wyze Battery Cam Pro.png' },
     ],
   },
 
@@ -82,7 +82,8 @@ export const products: Product[] = [
     price: 9.99,
     compareAtPrice: 12.99,
     pricingType: 'monthly',
-    image: '',
+    selectionType: 'toggle',
+    image: '/images/cam unlimited.svg',
   },
 
   // === SENSORS (Step 3) ===
@@ -93,7 +94,7 @@ export const products: Product[] = [
     stepId: 'sensors',
     reviewCategory: 'sensors',
     price: 29.99,
-    image: '',
+    image: '/images/Wyze Sense Motion Sensor.png',
   },
   {
     id: 'wyze-sense-hub',
@@ -104,7 +105,8 @@ export const products: Product[] = [
     price: 29.99,
     compareAtPrice: 29.99,
     isFreeWithBundle: true,
-    image: '',
+    required: true,
+    image: '/images/Wyze Sense Hub (Required).png',
   },
 
   // === PROTECTION (Step 4) ===
@@ -115,6 +117,6 @@ export const products: Product[] = [
     stepId: 'protection',
     reviewCategory: 'accessories',
     price: 20.98,
-    image: '',
+    image: '/images/Wyze MicroSD Card (256GB).png',
   },
 ];

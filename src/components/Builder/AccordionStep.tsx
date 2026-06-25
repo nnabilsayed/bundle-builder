@@ -8,10 +8,10 @@ import { Button } from '../shared/Button';
 import styles from './AccordionStep.module.css';
 
 const stepIcons: Record<StepId, string> = {
-  cameras: '📷',
-  plan: '🛡️',
-  sensors: '📡',
-  protection: '🏠',
+  cameras: '/images/choose your cameras.png',
+  plan: '/images/choose your plan.svg',
+  sensors: '/images/choose your sensors.png',
+  protection: '/images/add extra protection.png',
 };
 
 interface AccordionStepProps {
@@ -67,18 +67,20 @@ export function AccordionStep({ step }: AccordionStepProps) {
   return (
     <div className={`${styles.step} ${isOpen ? styles.open : ''}`}>
       <button className={styles.header} onClick={handleToggle} aria-expanded={isOpen}>
-        <div className={styles.headerLeft}>
+        <div className={styles.stepLabelRow}>
           <span className={styles.stepLabel}>STEP {step.number} OF 4</span>
-          <div className={styles.titleRow}>
-            <span className={styles.icon}>{stepIcons[step.id]}</span>
+        </div>
+        <div className={styles.titleRow}>
+          <div className={styles.titleLeft}>
+            <img src={stepIcons[step.id]} alt="" className={styles.icon} />
             <span className={styles.title}>{step.title}</span>
           </div>
-        </div>
-        <div className={styles.headerRight}>
-          {count > 0 && (
-            <span className={styles.selectedCount}>{count} selected</span>
-          )}
-          <span className={styles.chevron}>{isOpen ? '▲' : '▼'}</span>
+          <div className={styles.headerRight}>
+            {count > 0 && (
+              <span className={styles.selectedCount}>{count} selected</span>
+            )}
+            <span className={styles.chevron}>{isOpen ? '▲' : '▼'}</span>
+          </div>
         </div>
       </button>
 

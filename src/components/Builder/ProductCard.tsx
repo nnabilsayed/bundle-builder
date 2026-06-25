@@ -13,6 +13,8 @@ interface ProductCardProps {
 export function ProductCard({ product }: ProductCardProps) {
   const { state, dispatch } = useBundleContext();
 
+  const isToggle = product.selectionType === 'toggle';
+
   const activeVariantId =
     product.variants
       ? (state.selectedVariantByProduct[product.id] ?? product.variants[0].id)
@@ -28,6 +30,10 @@ export function ProductCard({ product }: ProductCardProps) {
     dispatch({ type: 'SELECT_VARIANT', productId: product.id, variantId });
   }
 
+  function handleToggle() {
+    dispatch({ type: 'SET_QUANTITY', id: activeVariantId, quantity: isSelected ? 0 : 1 });
+  }
+
   function handleIncrement() {
     dispatch({ type: 'INCREMENT', id: activeVariantId });
   }
@@ -40,14 +46,16 @@ export function ProductCard({ product }: ProductCardProps) {
   const imageUrl = activeVariant?.image || product.image;
 
   return (
-    <div className={`${styles.card} ${isSelected ? styles.selected : ''}`}>
-      {product.discountLabel && (
-        <div className={styles.badgeWrapper}>
-          <DiscountBadge label={product.discountLabel} />
-        </div>
-      )}
-
+    <div
+      className={`${styles.card} ${isSelected ? styles.selected : ''} ${isToggle ? styles.toggleCard : ''}`}
+      onClick={isToggle ? handleToggle : undefined}
+    >
       <div className={styles.imageWrapper}>
+        {product.discountLabel && (
+          <div className={styles.badgeWrapper}>
+            <DiscountBadge label={product.discountLabel} />
+          </div>
+        )}
         {imageUrl ? (
           <img src={imageUrl} alt={product.name} className={styles.image} />
         ) : (
@@ -56,14 +64,21 @@ export function ProductCard({ product }: ProductCardProps) {
       </div>
 
       <div className={styles.body}>
-        <h3 className={styles.name}>{product.name}</h3>
+        <div className={styles.nameRow}>
+          <h3 className={styles.name}>{product.name}</h3>
+          {isToggle && (
+            <div className={`${styles.toggleIndicator} ${isSelected ? styles.toggleIndicatorOn : ''}`}>
+              {isSelected && <span className={styles.checkmark}>✓</span>}
+            </div>
+          )}
+        </div>
 
         {product.description && (
           <p className={styles.description}>{product.description}</p>
         )}
 
         {product.learnMoreUrl && (
-          <a href={product.learnMoreUrl} className={styles.learnMore}>
+          <a href={product.learnMoreUrl} className={styles.learnMore} onClick={(e) => e.stopPropagation()}>
             Learn More
           </a>
         )}
@@ -77,17 +92,22 @@ export function ProductCard({ product }: ProductCardProps) {
         )}
 
         <div className={styles.footer}>
-          <QuantityStepper
-            value={quantity}
-            onIncrement={handleIncrement}
-            onDecrement={handleDecrement}
-          />
+          {!isToggle && (
+            <QuantityStepper
+              value={quantity}
+              onIncrement={handleIncrement}
+              onDecrement={handleDecrement}
+              minValue={product.required ? 1 : 0}
+              maxValue={product.required ? 1 : product.maxQty}
+            />
+          )}
           <Price
             price={product.price}
             compareAtPrice={product.compareAtPrice}
             pricingType={product.pricingType}
             isFreeWithBundle={product.isFreeWithBundle}
             size="sm"
+            theme="card"
           />
         </div>
       </div>

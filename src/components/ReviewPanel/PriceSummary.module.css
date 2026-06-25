@@ -1,48 +1,51 @@
 .summary {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin-top: 4px;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 8px;
+  width: 145px;
 }
 
 .financing {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  background-color: #111;
-  color: #fff;
-  font-size: 11px;
-  padding: 4px 10px;
-  border-radius: var(--radius-full);
-  align-self: flex-start;
-}
-
-.financing strong {
-  font-weight: 700;
+  justify-content: center;
+  padding: 5px 8px;
+  gap: 10px;
+  background: #4E2FD2;
+  border-radius: 3px;
+  font-family: 'Gilroy', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: -0.05em;
+  color: #FFFFFF;
+  white-space: nowrap;
 }
 
 .totals {
   display: flex;
   align-items: baseline;
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .compareAt {
-  font-size: var(--font-size-base);
+  font-family: 'Gilroy', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  letter-spacing: 0.0025em;
   text-decoration: line-through;
-  color: var(--color-text-muted);
+  color: #6F7882;
 }
 
 .price {
-  font-size: var(--font-size-2xl);
-  font-weight: 800;
-  color: var(--color-text-primary);
-}
-
-.savings {
-  font-size: var(--font-size-xs);
-  color: var(--color-primary);
-  font-weight: 600;
-  margin: 0;
+  font-family: 'Gilroy', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.00125em;
+  color: #4E2FD2;
+  text-align: right;
 }

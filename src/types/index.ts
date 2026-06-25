@@ -21,6 +21,9 @@ export interface Product {
   variants?: ProductVariant[];
   pricingType?: 'one-time' | 'monthly';
   isFreeWithBundle?: boolean;
+  required?: boolean;
+  maxQty?: number;
+  selectionType?: 'quantity' | 'toggle';
   image?: string; // used when no variants
 }
 
@@ -54,6 +57,7 @@ export interface ReviewLineData {
   price: number;
   compareAtPrice?: number;
   isFreeWithBundle?: boolean;
+  required?: boolean;
   pricingType?: 'one-time' | 'monthly';
   image?: string;
   category: ReviewCategory;

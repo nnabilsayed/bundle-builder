@@ -1,40 +1,43 @@
 .step {
   background: var(--color-card-bg);
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.step:last-child {
+  border-bottom: none;
 }
 
 .step.open {
-  border-color: var(--color-primary-light);
+  background: #EDF4FF;
 }
 
 .header {
   width: 100%;
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 14px 16px;
+  flex-direction: column;
+  padding: 0;
   background: none;
   border: none;
   cursor: pointer;
   text-align: left;
-  gap: 8px;
+  gap: 5px;
 }
 
 .header:hover {
   background-color: rgba(108, 43, 217, 0.03);
 }
 
-.headerLeft {
+.stepLabelRow {
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  align-items: center;
+  padding: 12px 15px 6px;
 }
 
 .stepLabel {
+  font-family: 'Gilroy', sans-serif;
+  font-weight: 500;
   font-size: 11px;
-  font-weight: 600;
   letter-spacing: 0.08em;
   color: var(--color-text-muted);
   text-transform: uppercase;
@@ -43,18 +46,35 @@
 .titleRow {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 3px;
+  padding: 20px 15px;
+  border-top: 0.5px solid #1F1F1F;
+  border-bottom: 0.5px solid #1F1F1F;
+  height: 66px;
+  box-sizing: border-box;
+}
+
+.titleLeft {
+  display: flex;
+  align-items: center;
   gap: 8px;
 }
 
 .icon {
-  font-size: 16px;
-  line-height: 1;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .title {
-  font-size: var(--font-size-lg);
-  font-weight: 700;
-  color: var(--color-text-primary);
+  font-family: 'Gilroy', sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1;
+  letter-spacing: 0;
+  color: #0B0D10;
 }
 
 .headerRight {
@@ -62,13 +82,14 @@
   align-items: center;
   gap: 8px;
   flex-shrink: 0;
-  padding-top: 14px;
 }
 
 .selectedCount {
-  font-size: var(--font-size-sm);
+  font-family: 'Gilroy', sans-serif;
   font-weight: 600;
-  color: var(--color-primary);
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  color: #4E2FD2;
 }
 
 .chevron {
@@ -82,7 +103,7 @@
 }
 
 .content {
-  padding: 0 16px 16px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 16px;

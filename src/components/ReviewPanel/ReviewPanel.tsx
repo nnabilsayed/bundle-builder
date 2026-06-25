@@ -1,6 +1,7 @@
 import { ReviewCategory } from '../../types';
 import { useBundleContext } from '../../context/BundleContext';
 import { saveBundleState } from '../../utils/localStorage';
+import { formatCurrency } from '../../utils/formatCurrency';
 import { ReviewSection } from './ReviewSection';
 import { SatisfactionBadge } from './SatisfactionBadge';
 import { PriceSummary } from './PriceSummary';
@@ -52,10 +53,12 @@ export function ReviewPanel() {
       {/* Plan row — monthly pricing, no stepper */}
       {planLine && (
         <div className={styles.planSection}>
-          <h4 className={styles.sectionHeading}>HOME MONITORING PLAN</h4>
+          <h4 className={styles.sectionHeading}>PLAN</h4>
           <div className={styles.planRow}>
-            <span className={styles.planIcon}>🛡️</span>
-            <a href="#" className={styles.planName}>{planLine.name}</a>
+            <img src="/images/cam unlimited.svg" alt="Cam Unlimited" className={styles.planIcon} />
+            <a href="#" className={styles.planName}>
+              <span className={styles.planNameDark}>Cam </span>Unlimited
+            </a>
             <Price
               price={planLine.price}
               compareAtPrice={planLine.compareAtPrice}
@@ -68,18 +71,21 @@ export function ReviewPanel() {
 
       {/* Shipping row */}
       <div className={styles.shippingRow}>
-        <span className={styles.shippingIcon}>🚚</span>
+        <img src="/images/Wyze Sense Keypad.svg" alt="Fast Shipping" className={styles.shippingIcon} />
         <span className={styles.shippingLabel}>Fast Shipping</span>
         <Price price={0} compareAtPrice={5.99} isFreeWithBundle />
       </div>
 
-      <SatisfactionBadge />
+      <div className={styles.priceRow}>
+        <SatisfactionBadge />
+        <PriceSummary totalCompareAt={totalCompareAt} totalPrice={totalPrice} />
+      </div>
 
-      <PriceSummary
-        totalCompareAt={totalCompareAt}
-        totalPrice={totalPrice}
-        totalSavings={totalSavings}
-      />
+      {totalSavings > 0 && (
+        <p className={styles.savings}>
+          Congrats! You're saving {formatCurrency(totalSavings)} on your security bundle!
+        </p>
+      )}
 
       <Button variant="primary" fullWidth onClick={handleCheckout} className={styles.checkoutBtn}>
         Checkout

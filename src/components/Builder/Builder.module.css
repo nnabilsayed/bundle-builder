@@ -16,7 +16,10 @@
 .steps {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-card-bg);
+  overflow: hidden;
 }
 
 @media (max-width: 767px) {

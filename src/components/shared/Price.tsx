@@ -7,14 +7,15 @@ interface PriceProps {
   isFreeWithBundle?: boolean;
   pricingType?: 'one-time' | 'monthly';
   size?: 'sm' | 'md' | 'lg';
+  theme?: 'default' | 'card';
 }
 
-export function Price({ price, compareAtPrice, isFreeWithBundle, pricingType, size = 'md' }: PriceProps) {
+export function Price({ price, compareAtPrice, isFreeWithBundle, pricingType, size = 'md', theme = 'default' }: PriceProps) {
   const formatter = pricingType === 'monthly' ? formatMonthly : formatCurrency;
   const showCompareAt = compareAtPrice && compareAtPrice !== price;
 
   return (
-    <span className={`${styles.price} ${styles[size]}`}>
+    <span className={`${styles.price} ${styles[size]} ${styles[theme]}`}>
       {showCompareAt && (
         <span className={styles.compareAt}>{formatter(compareAtPrice!)}</span>
       )}
