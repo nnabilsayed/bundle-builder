@@ -7,9 +7,7 @@ import { SatisfactionBadge } from './SatisfactionBadge';
 import { PriceSummary } from './PriceSummary';
 import { Button } from '../shared/Button';
 import { Price } from '../shared/Price';
-import styles from './ReviewPanel.module.css';
 
-// Plan and shipping are shown as static rows — not through ReviewSection
 const ITEM_CATEGORIES: ReviewCategory[] = ['cameras', 'sensors', 'accessories'];
 
 export function ReviewPanel() {
@@ -21,7 +19,6 @@ export function ReviewPanel() {
     saveBundleState(state);
     const el = document.activeElement as HTMLElement;
     el?.blur();
-    // In a production app this would be a toast notification
     alert('Your system has been saved! It will be restored when you return.');
   }
 
@@ -30,70 +27,87 @@ export function ReviewPanel() {
   }
 
   return (
-    <aside className={styles.panel}>
-      <div className={styles.header}>
-        <span className={styles.reviewLabel}>REVIEW</span>
-        <h2 className={styles.title}>Your security system</h2>
-        <p className={styles.subtitle}>
-          Review your personalized protection system designed to keep what matters most safe.
-        </p>
-      </div>
+    <aside className="bg-[#EDF4FF] border-[1.5px] border-border rounded-xl p-4 flex flex-col gap-1 sticky top-5 max-h-[calc(100vh-40px)] overflow-y-auto self-start max-md:static max-md:max-h-none max-md:overflow-y-visible xl:static xl:max-h-none xl:overflow-y-visible xl:p-6 xl:self-stretch">
 
-      {/* Cameras, sensors, accessories — with qty steppers */}
-      <div className={styles.items}>
-        {ITEM_CATEGORIES.map((cat) => (
-          <ReviewSection
-            key={cat}
-            category={cat}
-            lines={reviewLines.filter((l) => l.category === cat)}
-          />
-        ))}
-      </div>
+      {/* At xl: 2-column internal layout */}
+      <div className="xl:grid xl:grid-cols-[1fr_auto] xl:gap-8 xl:items-start">
 
-      {/* Plan row — monthly pricing, no stepper */}
-      {planLine && (
-        <div className={styles.planSection}>
-          <h4 className={styles.sectionHeading}>PLAN</h4>
-          <div className={styles.planRow}>
-            <img src="/images/cam unlimited.svg" alt="Cam Unlimited" className={styles.planIcon} />
-            <a href="#" className={styles.planName}>
-              <span className={styles.planNameDark}>Cam </span>Unlimited
-            </a>
-            <Price
-              price={planLine.price}
-              compareAtPrice={planLine.compareAtPrice}
-              pricingType="monthly"
-              size="sm"
-            />
+        {/* Left column: header + line items */}
+        <div className="flex flex-col gap-1">
+          <div className="border-b border-border pb-2.5 mb-1">
+            <h2 className="font-gilroy font-semibold text-[22px] leading-none tracking-[0.6px] text-[#1F1F1F] mb-1.5">
+              Your security system
+            </h2>
+            <p className="font-gilroy font-medium text-sm leading-[1.3] tracking-[0.6px] text-[#1F1F1F]/75 m-0">
+              Review your personalized protection system designed to keep what matters most safe.
+            </p>
+          </div>
+
+          <div className="flex flex-col">
+            {ITEM_CATEGORIES.map((cat) => (
+              <ReviewSection
+                key={cat}
+                category={cat}
+                lines={reviewLines.filter((l) => l.category === cat)}
+              />
+            ))}
+          </div>
+
+          {planLine && (
+            <div className="py-2 pb-1 border-b border-border">
+              <h4 className="font-gilroy font-normal text-xs leading-4 tracking-[0.03em] text-[#A8B2BD] uppercase m-0 mb-1.5">
+                PLAN
+              </h4>
+              <div className="flex items-center gap-2 py-0.5">
+                <img src="/images/cam unlimited.svg" alt="Cam Unlimited" className="w-5 h-6 shrink-0" />
+                <a href="#" className="flex-1 font-gilroy text-base font-bold leading-none tracking-[-0.002em] text-[#4E2FD2] no-underline hover:underline">
+                  <span className="text-black">Cam </span>Unlimited
+                </a>
+                <Price
+                  price={planLine.price}
+                  compareAtPrice={planLine.compareAtPrice}
+                  pricingType="monthly"
+                  size="sm"
+                />
+              </div>
+            </div>
+          )}
+
+          <div className="flex items-center gap-2.5 py-2">
+            <img src="/images/Wyze Sense Keypad.svg" alt="Fast Shipping" className="w-[41px] h-[41px] shrink-0" />
+            <span className="flex-1 text-xs font-semibold text-text-primary">Fast Shipping</span>
+            <Price price={0} compareAtPrice={5.99} isFreeWithBundle />
           </div>
         </div>
-      )}
 
-      {/* Shipping row */}
-      <div className={styles.shippingRow}>
-        <img src="/images/Wyze Sense Keypad.svg" alt="Fast Shipping" className={styles.shippingIcon} />
-        <span className={styles.shippingLabel}>Fast Shipping</span>
-        <Price price={0} compareAtPrice={5.99} isFreeWithBundle />
+        {/* Right column: satisfaction + totals + checkout */}
+        <div className="flex flex-col gap-3 xl:w-[300px] xl:pt-4">
+          <SatisfactionBadge />
+          <PriceSummary totalCompareAt={totalCompareAt} totalPrice={totalPrice} />
+
+          {totalSavings > 0 && (
+            <p className="font-gilroy font-semibold text-xs leading-none tracking-[-0.056px] text-[#0AA288] text-center m-0 w-full">
+              Congrats! You're saving {formatCurrency(totalSavings)} on your security bundle!
+            </p>
+          )}
+
+          <Button
+            variant="primary"
+            fullWidth
+            onClick={handleCheckout}
+            className="mt-1 px-4 py-[13px] h-12 font-bold text-[17px] leading-none gap-2 !rounded !bg-[#4E2FD2] !border-[#4E2FD2]"
+          >
+            Checkout
+          </Button>
+
+          <button
+            className="bg-transparent border-none cursor-pointer font-gilroy font-normal italic text-sm leading-[120%] tracking-[-0.016px] underline text-center text-[#484848] p-1.5 w-full hover:opacity-80"
+            onClick={handleSave}
+          >
+            Save my system for later
+          </button>
+        </div>
       </div>
-
-      <div className={styles.priceRow}>
-        <SatisfactionBadge />
-        <PriceSummary totalCompareAt={totalCompareAt} totalPrice={totalPrice} />
-      </div>
-
-      {totalSavings > 0 && (
-        <p className={styles.savings}>
-          Congrats! You're saving {formatCurrency(totalSavings)} on your security bundle!
-        </p>
-      )}
-
-      <Button variant="primary" fullWidth onClick={handleCheckout} className={styles.checkoutBtn}>
-        Checkout
-      </Button>
-
-      <button className={styles.saveLink} onClick={handleSave}>
-        Save my system for later
-      </button>
     </aside>
   );
 }

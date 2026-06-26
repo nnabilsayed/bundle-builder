@@ -27,7 +27,7 @@ export const products: Product[] = [
     reviewCategory: 'cameras',
     price: 34.98,
     compareAtPrice: 39.98,
-    discountLabel: 'Save 13%',
+    discountLabel: 'Save 12%',
     variants: [
       { id: 'wyze-cam-pan-v3-white', color: 'White', colorHex: '#FFFFFF', image: '/images/Wyze Cam Pan v3.png' },
       { id: 'wyze-cam-pan-v3-black', color: 'Black', colorHex: '#222222', image: '/images/black wyze cam pan v3.png' },
