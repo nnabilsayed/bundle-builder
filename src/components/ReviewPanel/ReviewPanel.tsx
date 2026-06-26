@@ -43,7 +43,7 @@ export function ReviewPanel() {
             </p>
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col border-b border-border pb-1">
             {ITEM_CATEGORIES.map((cat) => (
               <ReviewSection
                 key={cat}
@@ -56,13 +56,14 @@ export function ReviewPanel() {
           {planLine && (
             <div className="py-2 pb-1 border-b border-border">
               <h4 className="font-gilroy font-normal text-xs leading-4 tracking-[0.03em] text-[#A8B2BD] uppercase m-0 mb-1.5">
-                PLAN
+                <span className="md:hidden">HOME MONITORING PLAN</span>
+                <span className="hidden md:inline">PLAN</span>
               </h4>
               <div className="flex items-center gap-2 py-0.5">
                 <img src="/images/cam unlimited.svg" alt="Cam Unlimited" className="w-5 h-6 shrink-0" />
-                <a href="#" className="flex-1 font-gilroy text-base font-bold leading-none tracking-[-0.002em] text-[#4E2FD2] no-underline hover:underline">
+                <span className="flex-1 font-gilroy text-[20px] md:text-[15px] xl:text-[20px] font-bold leading-none tracking-[-0.002em] text-[#4E2FD2]">
                   <span className="text-black">Cam </span>Unlimited
-                </a>
+                </span>
                 <Price
                   price={planLine.price}
                   compareAtPrice={planLine.compareAtPrice}
@@ -75,7 +76,7 @@ export function ReviewPanel() {
 
           <div className="flex items-center gap-2.5 py-2">
             <img src="/images/Wyze Sense Keypad.svg" alt="Fast Shipping" className="w-[41px] h-[41px] shrink-0" />
-            <span className="flex-1 text-xs font-semibold text-text-primary">Fast Shipping</span>
+            <span className="flex-1 font-gilroy text-[18px] font-medium leading-[16px] tracking-[0.005em] text-[#0B0D10]">Fast Shipping</span>
             <Price price={0} compareAtPrice={5.99} isFreeWithBundle />
           </div>
         </div>
@@ -86,7 +87,7 @@ export function ReviewPanel() {
           <PriceSummary totalCompareAt={totalCompareAt} totalPrice={totalPrice} />
 
           {totalSavings > 0 && (
-            <p className="font-gilroy font-semibold text-xs leading-none tracking-[-0.056px] text-[#0AA288] text-center m-0 w-full">
+            <p className="font-gilroy font-semibold text-[14px] leading-none tracking-[-0.06px] text-[#0AA288] text-center m-0 w-full">
               Congrats! You're saving {formatCurrency(totalSavings)} on your security bundle!
             </p>
           )}

@@ -111,7 +111,7 @@ export function ProductCard({ product }: ProductCardProps) {
           />
         )}
 
-        <div className="flex items-center justify-between gap-2.5 mt-2">
+        <div className="flex items-end justify-between gap-2.5 mt-auto pt-2">
           {!isToggle && (
             <QuantityStepper
               value={quantity}

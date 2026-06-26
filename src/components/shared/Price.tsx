@@ -18,16 +18,25 @@ export function Price({ price, compareAtPrice, isFreeWithBundle, pricingType, si
   const showCompareAt = compareAtPrice && (isFreeWithBundle || compareAtPrice !== price);
 
   return (
-    <span className={clsx(theme === 'card' ? 'inline-flex flex-col items-end gap-0' : 'inline-flex items-baseline gap-1')}>
+    <span className={clsx(theme === 'card' ? 'inline-flex flex-col items-end gap-0 xl:flex-row xl:items-center xl:gap-[3px]' : 'inline-flex items-baseline gap-1')}>
       {showCompareAt && (
-        <span className={clsx('line-through text-[#6F7882]', compareAtSizes[size])}>
+        <span className={clsx(
+          'line-through',
+          theme === 'card'
+            ? 'font-gilroy font-normal text-[16px] leading-none tracking-[0.6px] text-[#D8392B]'
+            : clsx('text-[#6F7882]', compareAtSizes[size])
+        )}>
           {formatter(compareAtPrice!)}
         </span>
       )}
       {isFreeWithBundle ? (
         <span className="text-[#4E2FD2] font-bold">FREE</span>
       ) : (
-        <span className={clsx('font-semibold text-[#4E2FD2]', activeSizes[size])}>
+        <span className={clsx(
+          theme === 'card'
+            ? 'font-gilroy font-normal text-[16px] leading-none tracking-[0.6px] text-[#575757]'
+            : clsx('font-semibold text-[#4E2FD2]', activeSizes[size])
+        )}>
           {formatter(price)}
         </span>
       )}

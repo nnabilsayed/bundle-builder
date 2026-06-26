@@ -88,7 +88,7 @@ export function AccordionStep({ step }: AccordionStepProps) {
       </button>
 
       <div
-        className="overflow-hidden transition-[height] duration-[280ms] ease-in-out"
+        className={clsx('transition-[height] duration-[280ms] ease-in-out', height !== undefined && 'overflow-hidden')}
         style={{ height: height !== undefined ? `${height}px` : undefined }}
         ref={contentRef}
       >

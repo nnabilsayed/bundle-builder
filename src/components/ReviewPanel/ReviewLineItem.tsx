@@ -15,7 +15,7 @@ export function ReviewLineItem({ line }: { line: ReviewLineData }) {
   }
 
   return (
-    <div className="flex items-center gap-4 h-[41px]">
+    <div className="flex items-center gap-2 py-1 min-h-[34px]">
       <div className="shrink-0 w-7 h-7 flex items-center justify-center">
         {line.image ? (
           <img src={line.image} alt={line.name} className="w-full h-full object-contain" />
@@ -24,7 +24,7 @@ export function ReviewLineItem({ line }: { line: ReviewLineData }) {
         )}
       </div>
       <div className="flex-1 min-w-0">
-        <span className="font-gilroy text-[13px] font-semibold text-[#1F1F1F] leading-[1.3] tracking-[0.3px] block">
+        <span className="font-gilroy text-[18px] md:text-[13px] xl:text-[18px] font-medium text-[#0B0D10] leading-[16px] tracking-[0.005em] block truncate">
           {line.name}
         </span>
       </div>
@@ -36,7 +36,7 @@ export function ReviewLineItem({ line }: { line: ReviewLineData }) {
         maxValue={line.required ? 1 : undefined}
         compact
       />
-      <div className="w-[95px] shrink-0 flex justify-end">
+      <div className="w-[75px] shrink-0 flex justify-end">
         <Price
           price={line.price * line.quantity}
           compareAtPrice={line.compareAtPrice ? line.compareAtPrice * line.quantity : undefined}
