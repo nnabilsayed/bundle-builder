@@ -2,7 +2,6 @@ import { useRef, useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { Step, StepId } from '../../types';
 import { useBundleContext } from '../../context/BundleContext';
-import { products } from '../../data/products';
 import { steps } from '../../data/steps';
 import { ProductGrid } from './ProductGrid';
 import { Button } from '../shared/Button';
@@ -19,7 +18,7 @@ interface AccordionStepProps {
 }
 
 export function AccordionStep({ step }: AccordionStepProps) {
-  const { state, dispatch, selectedCountByStep } = useBundleContext();
+  const { state, dispatch, products, selectedCountByStep } = useBundleContext();
   const isOpen = state.expandedStepId === step.id;
   const count = selectedCountByStep[step.id];
   const stepProducts = products.filter((p) => p.stepId === step.id);

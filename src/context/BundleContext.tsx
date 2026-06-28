@@ -1,13 +1,14 @@
-import React, { createContext, useContext, useReducer, useMemo, useEffect } from 'react';
-import { BundleState, BundleAction, ReviewLineData, StepId } from '../types';
+import React, { createContext, useContext, useReducer, useMemo, useEffect, useState } from 'react';
+import { BundleState, BundleAction, ReviewLineData, StepId, Product } from '../types';
 import { bundleReducer } from './bundleReducer';
 import { initialState } from '../data/initialSelections';
-import { products } from '../data/products';
+import { products as localProducts } from '../data/products';
 import { loadBundleState } from '../utils/localStorage';
 
 interface BundleContextValue {
   state: BundleState;
   dispatch: React.Dispatch<BundleAction>;
+  products: Product[];
   reviewLines: ReviewLineData[];
   selectedCountByStep: Record<StepId, number>;
   totalCompareAt: number;
@@ -19,8 +20,19 @@ const BundleContext = createContext<BundleContextValue | null>(null);
 
 export function BundleProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(bundleReducer, initialState);
+  const [products, setProducts] = useState<Product[]>(localProducts);
 
-  // Restore from localStorage on mount
+  useEffect(() => {
+    const apiUrl = import.meta.env.VITE_API_URL;
+    if (!apiUrl) return;
+    fetch(`${apiUrl}/api/products`)
+      .then((res) => res.json())
+      .then((data: Product[]) => setProducts(data))
+      .catch(() => {
+        // API unavailable — keep local fallback
+      });
+  }, []);
+
   useEffect(() => {
     const saved = loadBundleState();
     if (saved) {
@@ -28,7 +40,6 @@ export function BundleProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  // Build review lines from current selections
   const reviewLines = useMemo<ReviewLineData[]>(() => {
     const lines: ReviewLineData[] = [];
 
@@ -74,9 +85,8 @@ export function BundleProvider({ children }: { children: React.ReactNode }) {
     }
 
     return lines;
-  }, [state.selections]);
+  }, [state.selections, products]);
 
-  // Count of distinct products selected per step
   const selectedCountByStep = useMemo<Record<StepId, number>>(() => {
     const counts: Record<StepId, number> = {
       cameras: 0,
@@ -87,23 +97,21 @@ export function BundleProvider({ children }: { children: React.ReactNode }) {
     for (const product of products) {
       const stepId = product.stepId;
       if (product.variants) {
-        const hasAny = product.variants.some(
-          (v) => (state.selections[v.id] ?? 0) > 0
-        );
+        const hasAny = product.variants.some((v) => (state.selections[v.id] ?? 0) > 0);
         if (hasAny) counts[stepId]++;
       } else {
         if ((state.selections[product.id] ?? 0) > 0) counts[stepId]++;
       }
     }
     return counts;
-  }, [state.selections]);
+  }, [state.selections, products]);
 
   const { totalCompareAt, totalPrice, totalSavings } = useMemo(() => {
     let compareAt = 0;
     let price = 0;
 
     for (const line of reviewLines) {
-      if (line.pricingType === 'monthly') continue; // exclude monthly from one-time total
+      if (line.pricingType === 'monthly') continue;
       if (line.isFreeWithBundle) continue;
       const linePrice = line.price * line.quantity;
       const lineCompareAt = (line.compareAtPrice ?? line.price) * line.quantity;
@@ -111,7 +119,6 @@ export function BundleProvider({ children }: { children: React.ReactNode }) {
       compareAt += lineCompareAt;
     }
 
-    // Add shipping savings (hardcoded: $5.99 saved)
     compareAt += 5.99;
 
     return {
@@ -125,13 +132,14 @@ export function BundleProvider({ children }: { children: React.ReactNode }) {
     () => ({
       state,
       dispatch,
+      products,
       reviewLines,
       selectedCountByStep,
       totalCompareAt,
       totalPrice,
       totalSavings,
     }),
-    [state, reviewLines, selectedCountByStep, totalCompareAt, totalPrice, totalSavings]
+    [state, products, reviewLines, selectedCountByStep, totalCompareAt, totalPrice, totalSavings]
   );
 
   return <BundleContext.Provider value={value}>{children}</BundleContext.Provider>;

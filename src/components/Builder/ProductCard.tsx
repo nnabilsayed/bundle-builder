@@ -58,7 +58,7 @@ export function ProductCard({ product }: ProductCardProps) {
       onClick={isToggle ? handleToggle : undefined}
     >
       {/* Image wrapper */}
-      <div className="relative shrink-0 w-[130px] flex items-center justify-center xl:w-full xl:shrink-0 xl:h-[100px]">
+      <div className="relative shrink-0 w-[130px] max-[340px]:w-[104px] max-[290px]:w-[80px] flex items-center justify-center xl:w-full xl:shrink-0 xl:h-[100px]">
         {product.discountLabel && (
           <div className="absolute top-0 left-0 z-[1]">
             <DiscountBadge label={product.discountLabel} />
@@ -74,7 +74,7 @@ export function ProductCard({ product }: ProductCardProps) {
       {/* Body */}
       <div className="flex flex-col gap-1 flex-1 min-w-0">
         <div className="flex items-start justify-between gap-1.5">
-          <h3 className="font-gilroy font-semibold text-base leading-none tracking-[0.6px] text-[#1F1F1F] m-0 xl:text-sm">
+          <h3 className="font-gilroy font-semibold text-base leading-none tracking-[0.6px] text-[#1F1F1F] m-0 break-words min-w-0 xl:text-sm">
             {product.name}
           </h3>
           {isToggle && (
@@ -88,7 +88,7 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
 
         {product.description && (
-          <p className="font-gilroy font-medium text-xs leading-[1.3] tracking-[0.6px] text-[#1F1F1F] m-0">
+          <p className="font-gilroy font-medium text-xs leading-[1.3] tracking-[0.6px] text-[#1F1F1F] m-0 break-words">
             {product.description}
           </p>
         )}
@@ -111,7 +111,7 @@ export function ProductCard({ product }: ProductCardProps) {
           />
         )}
 
-        <div className="flex items-end justify-between gap-2.5 mt-auto pt-2">
+        <div className="flex flex-wrap items-end justify-between gap-x-2.5 gap-y-1 mt-auto pt-2">
           {!isToggle && (
             <QuantityStepper
               value={quantity}

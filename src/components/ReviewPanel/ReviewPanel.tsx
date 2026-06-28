@@ -27,7 +27,7 @@ export function ReviewPanel() {
   }
 
   return (
-    <aside className="bg-[#EDF4FF] border-[1.5px] border-border rounded-xl p-4 flex flex-col gap-1 sticky top-5 max-h-[calc(100vh-40px)] overflow-y-auto self-start max-md:static max-md:max-h-none max-md:overflow-y-visible xl:static xl:max-h-none xl:overflow-y-visible xl:p-6 xl:self-stretch">
+    <aside className="w-full bg-[#EDF4FF] border-[1.5px] border-border rounded-xl p-4 flex flex-col gap-1 sticky top-5 max-h-[calc(100vh-40px)] overflow-y-auto self-start max-md:static max-md:max-h-none max-md:overflow-y-visible xl:static xl:max-h-none xl:overflow-y-visible xl:p-6 xl:self-stretch">
 
       {/* At xl: 2-column internal layout */}
       <div className="xl:grid xl:grid-cols-[1fr_auto] xl:gap-8 xl:items-start">
@@ -35,6 +35,7 @@ export function ReviewPanel() {
         {/* Left column: header + line items */}
         <div className="flex flex-col gap-1">
           <div className="border-b border-border pb-2.5 mb-1">
+            <p className="font-gilroy font-normal text-[12px] leading-[100%] tracking-[1.6px] text-[#484848] uppercase m-0 mb-2">REVIEW</p>
             <h2 className="font-gilroy font-semibold text-[22px] leading-none tracking-[0.6px] text-[#1F1F1F] mb-1.5">
               Your security system
             </h2>
